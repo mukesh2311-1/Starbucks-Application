@@ -15,6 +15,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/mukesh2311-1/Starbucks-Application.git'
             }
         }
+        stage ("Install OS Dependencies") {
+            steps {
+                sh '''
+                  apt-get update
+                  apt-get install -y libatomic1
+                '''
+            }
+        }
         stage("Install NPM Dependencies") {
             steps {
                 sh "npm install"
